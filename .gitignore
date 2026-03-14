@@ -1,0 +1,36 @@
+# pixi environments
+.pixi/*
+!.pixi/config.toml
+
+# ROS 2 / colcon artifacts
+build/
+install/
+log/
+
+# Python caches
+__pycache__/
+*.py[cod]
+
+# Test / coverage artifacts
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+# Packaging metadata
+*.egg-info/
+
+# Tool caches
+.mypy_cache/
+.ruff_cache/
+.tox/
+.nox/
+.direnv/
+.envrc
+
+# Editor / OS noise
+.vscode/
+.idea/
+*.swp
+*~
+.DS_Store

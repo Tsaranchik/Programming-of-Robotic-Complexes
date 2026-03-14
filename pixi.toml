@@ -1,0 +1,69 @@
+[workspace]
+name = "robostack"
+description = "Development environment for RoboStack ROS packages"
+channels = [
+  "https://prefix.dev/conda-forge",
+]
+platforms = ["linux-64"]
+
+[target.unix.activation]
+# For activation scripts, we use bash for Unix-like systems
+scripts = ["install/setup.bash"]
+
+[feature.build.target.unix.tasks]
+build = "colcon build --symlink-install --cmake-args -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DPython_FIND_VIRTUALENV=ONLY -DPython3_FIND_VIRTUALENV=ONLY"
+
+# Dependencies used by all environments
+[dependencies]
+python = "*"
+
+# Build tools
+compilers = "*"
+cmake = "*"
+pkg-config = "*"
+make = "*"
+ninja = "*"
+
+# ROS specific tools
+rosdep = "*"
+colcon-common-extensions = "*"
+
+[target.linux.dependencies]
+libgl-devel = "*"
+
+# Define ROS environments
+[environments]
+humble = { features = ["humble", "build"] }
+
+### ROS Humble ####
+[feature.humble]
+channels = ["https://prefix.dev/robostack-humble"]
+
+[feature.humble.dependencies]
+# Core ROS Humble desktop
+ros-humble-desktop = "*"
+
+# Webots ROS 2 bridge
+ros-humble-webots-ros2 = "*"
+
+# SLAM
+ros-humble-slam-toolbox = "*"
+
+# Navigation stack (объезд препятствий + планирование)
+ros-humble-navigation2 = "*"
+ros-humble-nav2-bringup = "*"
+
+# Gazebo интеграция
+ros-humble-gazebo-ros-pkgs = "*"
+
+# TurtleBot3
+ros-humble-turtlebot3 = "*"
+ros-humble-turtlebot3-gazebo = "*"
+
+# Симулятор Gazebo
+gazebo = "11.*"
+
+# Дополнительно полезно для RViz и работы с картами
+ros-humble-rviz2 = "*"
+ros-humble-nav2-map-server = "*"
+
